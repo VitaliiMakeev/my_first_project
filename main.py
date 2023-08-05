@@ -14,13 +14,11 @@ zap3 = {'id': 1, 'title': 'Привет тест3333', 'body': 'Просто з�
 #     json.dump(zap1, f)
 #     f.write('\n')
 
-
+#
 # with open('node.json', 'r', encoding='utf-8') as f:
 #     text = json.load(f)
-#     for i in text['nodes']:
-#         print('     ' + i['title'])
-#         print(i['body'])
-#         print(i['date'])
+#     for i in range(0, len(text['nodes'])):
+#         print(text['nodes'][i])
 
 
 # --------------------------------------------------------------------------
@@ -67,9 +65,11 @@ zap3 = {'id': 1, 'title': 'Привет тест3333', 'body': 'Просто з�
 # ------------------------------------------------------------------------------
 
 node1 = Node()
-# # node1.creat('заметка 2', 'еще одна пробная заметка2')
+# node1.creat('заметка 3', 'еще одна пробная заметка3')
 #
 # node1.remove(id_nod=1)
 # node1.read_all()
 # print('-' * 10)
-node1.sort_and_print_date()
+# node1.sort_and_print_date()
+# node1.chang_body(title='заметка 2', new_body='Измение заметки2')
+# node1.chang_title(title='заметка 1', new_title='измененный загаловок1')
