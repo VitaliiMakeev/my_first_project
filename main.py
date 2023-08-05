@@ -1,12 +1,14 @@
 import datetime
 import json
+import os
+
 from node import *
 
 date = datetime.date.today()
 date_now = f'{date.day}.{date.month}.{date.year}'
 zap1 = {'nodes': [{'title': 'Привет тест', 'body': 'Просто здороваюсь с тестом', 'date': date_now}]}
-zap2 = {'title': 'тест2222', 'body': 'Просто здороваюсь с тестом2222', 'date': '25.07.2023'}
-zap3 = {'title': 'Привет тест3333', 'body': 'Просто здороваюсь с тестом3333', 'date': date_now}
+zap2 = {'id': 1, 'title': 'тест2222', 'body': 'Просто здороваюсь с тестом2222', 'date': '25.07.2023'}
+zap3 = {'id': 1, 'title': 'Привет тест3333', 'body': 'Просто здороваюсь с тестом3333', 'date': date_now}
 # print(zap1)
 # with open("node.json", "w", encoding="utf-8") as f:
 #     json.dump(zap1, f)
@@ -25,7 +27,7 @@ zap3 = {'title': 'Привет тест3333', 'body': 'Просто здоров
 # Дозапись в файл json
 # with open('node.json', encoding='utf-8') as f:
 #     text = json.load(f)
-#     text['nodes'].append(zap2)
+#     text['nodes'].append(zap3)
 # with open('node.json', 'w', encoding='utf-8') as f1:
 #     json.dump(text, f1, ensure_ascii=False, indent=2)
 
@@ -65,8 +67,9 @@ zap3 = {'title': 'Привет тест3333', 'body': 'Просто здоров
 # ------------------------------------------------------------------------------
 
 node1 = Node()
-# # node1.creat('заметка 2', 'еще одна пробная заметка')
-# node1.remove('заметка 2')
-node1.read_all()
-print('-' * 10)
-node1.sort_date()
+# # node1.creat('заметка 2', 'еще одна пробная заметка2')
+#
+# node1.remove(id_nod=1)
+# node1.read_all()
+# print('-' * 10)
+node1.sort_and_print_date()
