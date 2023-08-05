@@ -74,6 +74,7 @@ class Node:
                             text['nodes'].remove(i)
                             print('Удалил!')
                             flag += 1
+                            break
                 if flag != 0:
                     with open('node.json', 'w', encoding='utf-8') as f1:
                         json.dump(text, f1, ensure_ascii=False, indent=2)
@@ -87,6 +88,7 @@ class Node:
                             text['nodes'].remove(i)
                             print('Удалил!')
                             flag += 1
+                            break
                 if flag != 0:
                     with open('node.json', 'w', encoding='utf-8') as f1:
                         json.dump(text, f1, ensure_ascii=False, indent=2)
@@ -112,3 +114,69 @@ class Node:
                 print(str(i['id']) + '     ' + i['title'])
                 print(i['body'])
                 print(i['date'])
+
+    def chang_body(self, new_body, id_nod=None, title=None):
+        flag = 0
+        if id_nod:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in range(0, len(text['nodes'])):
+                    if text['nodes'][i]['id'] == id_nod:
+                        text['nodes'][i]['body'] = new_body
+                        text['nodes'][i]['date'] = self.date_now
+                        print('Готово!')
+                        flag += 1
+                        break
+            if flag != 0:
+                with open('node.json', 'w', encoding='utf-8') as f1:
+                    json.dump(text, f1, ensure_ascii=False, indent=2)
+            else:
+                print('Совпадений не найдено!')
+        if title:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in range(0, len(text['nodes'])):
+                    if text['nodes'][i]['title'] == title:
+                        text['nodes'][i]['body'] = new_body
+                        text['nodes'][i]['date'] = self.date_now
+                        print('Готово!')
+                        flag += 1
+                        break
+            if flag != 0:
+                with open('node.json', 'w', encoding='utf-8') as f1:
+                    json.dump(text, f1, ensure_ascii=False, indent=2)
+            else:
+                print('Совпадений не найдено!')
+
+    def chang_title(self, new_title: str, id_nod=None, title=None):
+        flag = 0
+        if id_nod:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in range(0, len(text['nodes'])):
+                    if text['nodes'][i]['id'] == id_nod:
+                        text['nodes'][i]['title'] = new_title
+                        text['nodes'][i]['date'] = self.date_now
+                        print('Готово!')
+                        flag += 1
+                        break
+            if flag != 0:
+                with open('node.json', 'w', encoding='utf-8') as f1:
+                    json.dump(text, f1, ensure_ascii=False, indent=2)
+            else:
+                print('Совпадений не найдено!')
+        if title:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in range(0, len(text['nodes'])):
+                    if text['nodes'][i]['title'] == title:
+                        text['nodes'][i]['title'] = new_title
+                        text['nodes'][i]['date'] = self.date_now
+                        print('Готово!')
+                        flag += 1
+                        break
+            if flag != 0:
+                with open('node.json', 'w', encoding='utf-8') as f1:
+                    json.dump(text, f1, ensure_ascii=False, indent=2)
+            else:
+                print('Совпадений не найдено!')
