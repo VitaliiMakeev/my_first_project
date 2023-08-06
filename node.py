@@ -24,8 +24,8 @@ class Node:
         else:
             with open('node.json', encoding='utf-8') as f1:
                 text = json.load(f1)
-                for i in text['nodes']:
-                    self.id_node = i['id']
+                if len(text['nodes']) != 0:
+                    self.id_node = text['nodes'][-1]['id']
 
     def creat(self, title, body):
         res = {'id': self.id_node + 1, 'title': title, 'body': body, 'date': self.date_now}
@@ -34,6 +34,7 @@ class Node:
             result = {'nodes': [res]}
             with open('node.json', 'w', encoding='utf-8') as f1:
                 json.dump(result, f1, ensure_ascii=False, indent=2)
+                self.id_node += 1
         else:
             with open('node.json', encoding='utf-8') as f:
                 text = json.load(f)
@@ -42,6 +43,7 @@ class Node:
                         print('Такой заголовок уже есть! придумайте другой.')
                         flag += 1
             if flag == 0:
+                self.id_node += 1
                 text['nodes'].append(res)
                 with open('node.json', 'w', encoding='utf-8') as f1:
                     json.dump(text, f1, ensure_ascii=False, indent=2)
@@ -53,9 +55,10 @@ class Node:
             with open('node.json', 'r', encoding='utf-8') as f:
                 text = json.load(f)
                 for i in text['nodes']:
-                    print(str(i['id']) + '     ' + i['title'])
+                    print('№' + str(i['id']) + '     ' + i['title'])
                     print(i['body'])
                     print(i['date'])
+                    print('-' * len(i['body']) + (10 * '-'))
 
     def remove(self, title=None, id_nod=None):
         flag = 0
@@ -107,7 +110,7 @@ class Node:
                             text['nodes'][i], text['nodes'][i + 1] = text['nodes'][i + 1], text['nodes'][i]
                             tmp += 1
             for i in text['nodes']:
-                print(str(i['id']) + '     ' + i['title'])
+                print('№' + str(i['id']) + '     ' + i['title'])
                 print(i['body'])
                 print(i['date'])
 
@@ -182,3 +185,39 @@ class Node:
                         json.dump(text, f1, ensure_ascii=False, indent=2)
                 else:
                     print('Совпадений не найдено!')
+
+    def search_date(self, search_date):
+        res = []
+        if self.id_node == 0:
+            print('Список заметок пуст!')
+        else:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in text['nodes']:
+                    if i['date'] == search_date:
+                        res.append(i)
+        return res
+
+    def search_title(self, serch_title):
+        res = []
+        if self.id_node == 0:
+            print('Список заметок пуст!')
+        else:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in text['nodes']:
+                    if i['title'] == serch_title:
+                        res.append(i)
+        return res
+
+    def search_id(self, id_nod8):
+        res = []
+        if self.id_node == 0:
+            print('Список заметок пуст!')
+        else:
+            with open('node.json', encoding='utf-8') as f:
+                text = json.load(f)
+                for i in text['nodes']:
+                    if i['id'] == id_nod8:
+                        res.append(i)
+        return res
